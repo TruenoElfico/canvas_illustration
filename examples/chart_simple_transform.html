@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="600" height="400" style="background-color:#efefef"></canvas>
+  <script>
+    window.onload = function(){
+      var canvas = document.getElementById("canvas");
+
+      if(canvas.getContext){
+        var ctx = canvas.getContext('2d');
+
+        var scores = [100, 90, 85, 45, 72, 88];
+        scores.reverse();
+        var width = 50;
+        var currX = 0;
+
+        ctx.translate(375, 200);
+        ctx.rotate(1*Math.PI);
+
+        ctx.fillStyle = 'green';
+        for(var i=0;i<scores.length;i++){
+          ctx.fillRect(currX, 0, width, scores[i])
+          currX += width + 10;
+        }        
+      }else{
+        alert("Tu navegador no soporta CANVAS HTML")
+      }
+    }
+  </script>
+</body>
+</html>

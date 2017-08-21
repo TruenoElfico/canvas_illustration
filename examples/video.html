@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  Video:
+  <br>
+  <video id="video" controls="true" width="270" height="200">
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+  </video>
+  <br>
+  <canvas id="canvas" width="600" height="400" style="background-color:#efefef"></canvas>
+  <script>
+    var timerID;
+    window.onload = function(){
+      var canvas = document.getElementById('canvas')
+
+      if(canvas.getContext){
+        var ctx = canvas.getContext('2d');
+
+        var video = document.getElementById('video');
+
+        video.addEventListener('play',function(){
+          timerID = window.setInterval( function(){
+            ctx.drawImage(video,5,5,270,125);
+          },60);
+        });
+        video.addEventListener('pause',function(){
+          stopTimer();
+        });
+        video.addEventListener('ended',function(){
+          stopTimer();
+        });
+      }
+    }
+
+    function stopTimer(){
+      window.clearInterval(timerID);
+    }
+  </script>
+</body>
+</html>
